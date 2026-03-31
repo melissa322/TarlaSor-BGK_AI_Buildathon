@@ -22,7 +22,7 @@ Belirti anlat veya lab değeri gir — TarlaSor sade Türkçeyle analiz yapar, n
 
 ## Canlı Demo
 
-🌐 Yayın Linki: [tarla-sor-bgk-ai-buildathon.vercel.app](https://tarla-sor-bgk-ai-buildathon.vercel.app)
+🌐 Yayın Linki: https://tarla-sor-bgk-ai-buildathon-ckb6.vercel.app/
 
 🎥 Demo Video: [buraya Loom linki eklenecek]
 
