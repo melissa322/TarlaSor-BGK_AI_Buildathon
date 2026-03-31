@@ -24,7 +24,7 @@ Belirti anlat veya lab değeri gir — TarlaSor sade Türkçeyle analiz yapar, n
 
 🌐 Yayın Linki: https://tarlasor2-mno7.vercel.app/
 
-🎥 Demo Video: [buraya Loom linki eklenecek]
+🎥 Demo Video: https://www.loom.com/share/44b16c3d76204596b164a3db0de07f2d
 
 ## Kullanılan Teknolojiler
 
