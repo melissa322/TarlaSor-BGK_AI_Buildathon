@@ -1,91 +1,75 @@
-# TarlaSor Ağı
+# 🌾 TarlaSor Ağı
 
-Türkiye'deki çiftçilere yönelik bölgesel ziraat asistanı ve topluluk uygulaması.
+Dünya genelinde 500 milyondan fazla küçük çiftçi, toprak ve sulama suyu test sonuçlarını yorumlayamadığı için yanlış kararlar alıyor ve toprağını giderek çoraklaştırıyor. TarlaSor bu sorunu çözüyor — belirti anlat veya lab değeri gir, AI sade Türkçeyle analiz yapar ve ne yapman gerektiğini söyler.
 
-## Demo Video
+## Problem
 
-- (Loom/YouTube) Link: TBD
+Küçük çiftçiler tarım danışmanına ulaşamıyor — pahalı, zaman alıyor, her bölgede yok. Bu hem küresel bir çevre krizi (toprak bozunumu, gıda güvenliği) hem de derin bir fırsat eşitsizliği. TarlaSor bu boşluğu dolduruyor: sensör yok, abonelik yok, teknik bilgi gerekmez.
 
-## Yayın Linki
+## Çözüm
 
-- (Netlify/Vercel) Link: TBD
+Belirti anlat veya lab değeri gir — TarlaSor sade Türkçeyle analiz yapar, ne yapman gerektiğini söyler. Hava durumuna göre kişiselleştirilmiş öneriler alır, geçmiş analizlerini takip eder, bölgendeki çiftçilerle forum üzerinden bilgi paylaşırsın.
 
 ## Özellikler
 
-- **AI analiz asistanı**
-  - Toprak / su / bitki hastalığı belirtilerini analiz eder
-  - Bölge ve (varsa) hava durumuna göre prompt'u kişiselleştirir
-- **Yerel forum**
-  - Giriş yapan kullanıcı mesaj paylaşabilir
-  - Mesajlar şehir/bölge eşleşmesine göre akıllı sıralanır
-- **Kullanıcı hesabı (local, opsiyonel)**
-  - **E-posta + şifre** ile kayıt/giriş
-  - Misafir mod mevcut (özellikler kısıtlı)
-  - **Kişiye özel geçmiş**
-    - Her kullanıcının analiz geçmişi ayrı tutulur
+- 🌱 **Toprak Analizi** — belirti veya lab değeriyle
+- 💧 **Su Kalitesi Analizi** — sulama suyunun bitkiye etkisi
+- 🍂 **Bitki Hastalığı Tespiti** — zararlı ve hastalık önerileri
+- ☀️ **Hava Durumu** — şehir bazlı 7 günlük tahmin (Open-Meteo)
+- 💬 **Yerel Forum** — şehir/bölgeye göre sıralanan çiftçi topluluğu
+- 📋 **Analiz Geçmişi** — kişisel analiz kayıtları (localStorage)
+- 👤 **Kullanıcı Hesabı** — kayıt/giriş veya misafir mod
 
-## Teknoloji
+## Canlı Demo
 
-- Frontend: **React + Vite**
-- AI: **Groq API** (`groq-sdk`)
-- Hava durumu: **Open‑Meteo** (şehir → geocoding → mevcut + 7 günlük tahmin)
-- Veri saklama: **localStorage** (kullanıcıya özel anahtarlar)
+🌐 Yayın Linki: [tarla-sor-bgk-ai-buildathon.vercel.app](https://tarla-sor-bgk-ai-buildathon.vercel.app)
+
+🎥 Demo Video: [buraya Loom linki eklenecek]
+
+## Kullanılan Teknolojiler
+
+- **Frontend:** React + Vite
+- **AI:** Groq API (Llama 3.3-70b-versatile)
+- **Hava Durumu:** Open-Meteo (geocoding + 7 günlük tahmin)
+- **Auth + Veri:** Local Auth + localStorage (MVP)
+- **Planlanan:** Supabase (auth, geçmiş, forum)
+- **Deploy:** Vercel
+- **Editörler:** Cursor, Windsurf, Antigravity
+- **AI Asistanlar:** Claude AI, Gemini
 
 ## Kurulum
 
-1) Bağımlılıkları yükle
-
+1. Bağımlılıkları yükle:
 ```bash
 npm install
 ```
 
-2) Ortam değişkenleri
-
-Proje köküne `.env` dosyası ekle (şablon: `.env.example`):
-
+2. `.env` dosyası oluştur (şablon: `.env.example`):
 ```env
-VITE_GROQ_API_KEY=YOUR_GROQ_KEY
+VITE_GROQ_API_KEY=senin_groq_anahtarın
+VITE_SUPABASE_URL=senin_supabase_url
+VITE_SUPABASE_ANON_KEY=senin_supabase_anon_key
 ```
 
-3) Çalıştır
-
+3. Çalıştır:
 ```bash
 npm run dev
 ```
 
-Not: Hesap açmak zorunlu değil. Misafir modda uygulamayı inceleyebilirsin; geçmiş kaydı gibi özellikler kısıtlıdır.
+Not: Hesap açmak zorunlu değil. Misafir modda uygulamayı inceleyebilirsin.
 
-## Local hesap / veri modeli (özet)
+## Güvenlik Notu
 
-- Oturum:
-  - `localStorage["tarlasor_session"] = { email }`
-- Hesaplar:
-  - `localStorage["tarlasor_accounts"]`
-  - Şifreler tarayıcıda **salt + SHA-256** hash olarak tutulur (düz metin değil).
-- Kullanıcı geçmişi:
-  - `tarlasor_gecmis_<email>`
-- Kullanıcı forum verisi:
-  - `tarlasor_forum_<email>`
-- Misafir forum verisi:
-  - `tarlasor_forum_guest`
+`VITE_GROQ_API_KEY` client tarafında kullanıldığı için demo ortamında görünür. Üretimde Groq çağrısını bir backend/proxy üzerinden geçirmek gerekir.
 
-## Güvenlik notu
-
-- `VITE_GROQ_API_KEY` client tarafında kullanıldığı için yayınlanan uygulamada görünür.
-  - Demo için ok.
-  - Üretimde: Groq çağrısını bir backend/proxy üzerinden geçirmek gerekir.
-
-## Supabase’e geçiş
+## Supabase'e Geçiş Planı
 
 Adım adım geçiş planı: `supabase-migration.md`
 
-## Wicked problem / “kaos” tarafı
+## Wicked Problem
 
-Bu proje doğrudan şu “kötücül / karmaşık” problemlere temas ediyor:
-
-- **Gıda güvenliği**
-- **İklim krizi ve kuraklık**
-- **Toprak bozunumu / verim kaybı**
-- **Bilgiye erişim eşitsizliği (kırsal bölgeler)**
-
-AI'nın yanlış/eksik yönlendirme riski olduğu için: öneriler "kesin teşhis" değil, pratik ve temkinli dille verilir.
+Bu proje şu küresel sorunlara temas ediyor:
+- Gıda güvenliği
+- İklim krizi ve kuraklık
+- Toprak bozunumu / verim kaybı
+- Bilgiye erişim eşitsizliği (kırsal bölgeler)
