@@ -26,6 +26,8 @@ Belirti anlat veya lab değeri gir — TarlaSor sade Türkçeyle analiz yapar, n
 
 🎥 Demo Video: https://www.loom.com/share/44b16c3d76204596b164a3db0de07f2d
 
+Portfolyo Linki: https://island-silica-2d6.notion.site/TarlaSor-332cedb6620e80288498d99fa58bc94d?source=copy_link
+
 ## Kullanılan Teknolojiler
 
 - **Frontend:** React + Vite
